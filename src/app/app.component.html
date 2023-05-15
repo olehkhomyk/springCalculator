@@ -9,7 +9,7 @@
         </mat-form-field>
 
         <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue1)" (click)="addRate1()">
-          Update
+          Застосувати
         </button>
       </div>
       <div class="container">
@@ -19,7 +19,7 @@
         </mat-form-field>
 
         <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue2)" (click)="addRate2()">
-          Update
+          Застосувати
         </button>
       </div>
       <div class="container">
@@ -29,7 +29,7 @@
         </mat-form-field>
 
         <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue3)" (click)="addRate3()">
-          Update
+          Застосувати
         </button>
       </div>
       <div class="container">
@@ -39,7 +39,7 @@
         </mat-form-field>
 
         <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue4)" (click)="addRate4()">
-          Update
+          Застосувати
         </button>
       </div>
       <div class="container">
@@ -49,7 +49,13 @@
         </mat-form-field>
 
         <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue5)" (click)="addRate5()">
-          Update
+          Застосувати
+        </button>
+      </div>
+
+      <div class="container" style="text-align: center">
+        <button mat-raised-button color="warn" (click)="reset()">
+          Очистити
         </button>
       </div>
     </div>

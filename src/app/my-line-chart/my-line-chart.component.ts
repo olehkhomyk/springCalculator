@@ -20,7 +20,7 @@ export class MyLineChartComponent implements OnChanges {
         label: 'Series A',
         backgroundColor: 'rgba(148,159,177,0.2)',
         borderColor: 'rgb(0,56,151)',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBackgroundColor: 'rgb(107,45,238)',
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(148,159,177,0.8)',
@@ -66,12 +66,28 @@ export class MyLineChartComponent implements OnChanges {
   }
 
   downloadCanvas(event: any) {
-    // get the `<a>` element from click event
-    var anchor = event.target;
-    // get the canvas, I'm getting it by tag name, you can do by id
-    // and set the href of the anchor to the canvas dataUrl
-    anchor.href = document.getElementsByTagName('canvas')[0].toDataURL();
-    // set the anchors 'download' attibute (name of the file to be downloaded)
-    anchor.download = "test.png";
+    const fileName = prompt('Введіть імʼя файлу для збереження')
+
+    const attrs = {
+      href: `${this.chart?.toBase64Image()}`,
+      hidden: '',
+      target: '_blank',
+      download: fileName + '.png'
+    };
+
+    openLink(attrs);
   }
 }
+
+const openLink = (attrs: any = {}) => {
+  const link = document.createElement('a');
+  Object.keys(attrs).forEach(key => link.setAttribute(key, attrs[key]));
+  // link.setAttribute('download','download');
+  document.body.appendChild(link);
+  setTimeout(() => {
+    link.click();
+    // Cleanup the DOM
+    link.remove();
+  },         500);
+
+};
