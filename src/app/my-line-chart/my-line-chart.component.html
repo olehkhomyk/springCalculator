@@ -1,10 +1,13 @@
 <canvas baseChart class="chart"
         [data]="lineChartData"
         [options]="lineChartOptions"
+        [legend]="true"
         [type]="lineChartType"></canvas>
 
 <br>
 
-<a mat-raised-button color="primary" (click)="downloadCanvas($event)">
-  Зберегти Графік
-</a>
+<div style="text-align: right; padding-right: 30px">
+  <a mat-raised-button color="primary" (click)="downloadCanvas($event)">
+    Зберегти Графік
+  </a>
+</div>

@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-xs-3">
     <div class="left-panel">
-      <div class="container">
+      <div class="container-main">
         <mat-form-field class="example-full-width">
           <mat-label>KG на 10мм</mat-label>
           <input matInput placeholder="KG" type="number" [(ngModel)]="kgValue1">
@@ -12,48 +12,48 @@
           Застосувати
         </button>
       </div>
-      <div class="container">
+      <div class="container-main">
         <mat-form-field class="example-full-width">
           <mat-label>KG на 20мм</mat-label>
           <input matInput placeholder="KG" type="number" [(ngModel)]="kgValue2">
         </mat-form-field>
 
-        <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue2)" (click)="addRate2()">
+        <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue1, kgValue2)" (click)="addRate2()">
           Застосувати
         </button>
       </div>
-      <div class="container">
+      <div class="container-main">
         <mat-form-field class="example-full-width">
           <mat-label>KG на 30мм</mat-label>
           <input matInput placeholder="KG" type="number" [(ngModel)]="kgValue3">
         </mat-form-field>
 
-        <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue3)" (click)="addRate3()">
+        <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue1, kgValue2, kgValue3)" (click)="addRate3()">
           Застосувати
         </button>
       </div>
-      <div class="container">
+      <div class="container-main">
         <mat-form-field class="example-full-width">
           <mat-label>KG на 40мм</mat-label>
           <input matInput placeholder="KG" type="number" [(ngModel)]="kgValue4">
         </mat-form-field>
 
-        <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue4)" (click)="addRate4()">
+        <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue1, kgValue2, kgValue3, kgValue4)" (click)="addRate4()">
           Застосувати
         </button>
       </div>
-      <div class="container">
+      <div class="container-main">
         <mat-form-field class="example-full-width">
           <mat-label>KG на 50мм</mat-label>
           <input matInput placeholder="KG" type="number" [(ngModel)]="kgValue5">
         </mat-form-field>
 
-        <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue5)" (click)="addRate5()">
+        <button mat-raised-button color="primary" [disabled]="isInputDisabled(kgValue1, kgValue2, kgValue3, kgValue4, kgValue5)" (click)="addRate5()">
           Застосувати
         </button>
       </div>
 
-      <div class="container" style="text-align: center">
+      <div class="container-main" style="text-align: center">
         <button mat-raised-button color="warn" (click)="reset()">
           Очистити
         </button>
@@ -67,3 +67,29 @@
   </div>
 </div>
 
+
+<div class="left-panel">
+  <h2>Калькуляція жорсткості пружини</h2>
+  <p>Введіть силу тиску на пружину (кг) при зжатті в 20мм.</p>
+  <div class="row">
+    <div class="col-xs-3">
+      <mat-form-field class="example-full-width">
+        <mat-label>KG на 20мм</mat-label>
+        <input matInput placeholder="KG" type="number" [(ngModel)]="kgValuePipe">
+      </mat-form-field>
+    </div>
+    <div class="col-xs-1">
+      <button mat-raised-button color="warn"
+              [disabled]="isInputDisabled(kgValuePipe)"
+              (click)="calculateSpringRate()">
+        Розрахувати
+      </button>
+    </div>
+    <div class="col-xs-3 text-normal" *ngIf="showSpringRate">
+      <div class="padding-sm">
+        <span class="text-bold">{{ kgMm }}</span> KG/MM</div>
+      <div class="padding-sm">
+        <span class="text-bold">{{ nmMm }}</span> NM/MM</div>
+    </div>
+  </div>
+</div>

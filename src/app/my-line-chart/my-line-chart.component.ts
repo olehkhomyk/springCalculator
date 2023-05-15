@@ -17,14 +17,14 @@ export class MyLineChartComponent implements OnChanges {
     datasets: [
       {
         data: [],
-        label: 'Series A',
+        label: 'Кілограми',
         backgroundColor: 'rgba(148,159,177,0.2)',
         borderColor: 'rgb(0,56,151)',
         pointBackgroundColor: 'rgb(107,45,238)',
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
+        fill: 'origin'
       },
     ],
     labels: ['0mm', '10mm', '20mm', '30mm', '40mm', '50mm']
@@ -33,7 +33,13 @@ export class MyLineChartComponent implements OnChanges {
   public lineChartOptions: ChartConfiguration['options'] = {
     elements: {
       line: {
-        tension: 0
+        tension: 0,
+        segment: {
+          backgroundColor: 'rgb(107,45,238)'
+        }
+      },
+      point: {
+        radius: 5
       }
     },
     scales: {
@@ -67,6 +73,10 @@ export class MyLineChartComponent implements OnChanges {
 
   downloadCanvas(event: any) {
     const fileName = prompt('Введіть імʼя файлу для збереження')
+
+    if (!fileName) {
+      return;
+    }
 
     const attrs = {
       href: `${this.chart?.toBase64Image()}`,

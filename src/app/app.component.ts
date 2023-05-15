@@ -12,7 +12,13 @@ export class AppComponent {
   kgValue4: number | any;
   kgValue5: number | any;
 
+  kgValuePipe: number | any;
+
   chartData: any[] = [0];
+
+  showSpringRate: boolean = false;
+  kgMm: string = '';
+  nmMm: string = '';
 
   constructor() {
   }
@@ -28,8 +34,8 @@ export class AppComponent {
 
   // (KG / MM) = kg/mm | kg/mm * 9.8 = nm/mm
 
-  isInputDisabled(value: any): boolean {
-    return typeof(value) === 'object' || isNaN(value);
+  isInputDisabled(...values: any[]): boolean {
+    return values.some((value: any) => typeof(value) === 'object' || isNaN(value));
   }
 
   addRate1(): void {
@@ -50,5 +56,27 @@ export class AppComponent {
 
   addRate5(): void {
     this.chartData = [0, this.kgValue1, this.kgValue2, this.kgValue3, this.kgValue4, this.kgValue5];
+  }
+
+  calculateSpringRate(): void {
+    this.kgMm = this.getKgMM();
+    this.nmMm = this.getNmMM();
+    this.showSpringRate = true;
+  }
+
+  resetSpringRate(value: any): void {
+    if (this.isInputDisabled(value)) {
+      this.showSpringRate = false;
+      this.kgMm = '';
+      this.nmMm = '';
+    }
+  }
+
+  getKgMM(): string {
+    return (this.kgValuePipe / 20).toFixed(2);
+  }
+
+  getNmMM(): string {
+    return ((this.kgValuePipe / 20) * 9.8).toFixed(2);
   }
 }
