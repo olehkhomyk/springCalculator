@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,8 @@ export class AppComponent {
   showSpringRate: boolean = false;
   kgMm: string = '';
   nmMm: string = '';
+
+  mmToCalculateRate: number = 30;
 
   constructor() {
   }
@@ -73,10 +76,10 @@ export class AppComponent {
   }
 
   getKgMM(): string {
-    return (this.kgValuePipe / 20).toFixed(2);
+    return (this.kgValuePipe / this.mmToCalculateRate).toFixed(2);
   }
 
   getNmMM(): string {
-    return ((this.kgValuePipe / 20) * 9.8).toFixed(2);
+    return ((this.kgValuePipe / this.mmToCalculateRate) * 9.8).toFixed(2);
   }
 }
